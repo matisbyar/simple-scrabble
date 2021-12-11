@@ -11,22 +11,79 @@ public class MEE {
     public MEE(int[] tab){
         /* pré-requis : les éléments de tab sont positifs ou nuls
            action : crée un multi-ensemble dont le tableau de fréquences est une copie de tab */
-           this.tabFreq = tab;
+        this.tabFreq = tab;
     }
 
     public MEE(MEE e){
         /* constructeur par copie */
-        // À COMPLÉTER
+        this.tabFreq = e.tabFreq;
+        this.nbTotEx = e.nbTotEx;
     }
 
     public boolean estVide(){
         /* résultat : vrai ssi cet ensemble est vide */
-        return this.tabFreq.length == 0;
+        return (this.tabFreq.length == 0 || this.nbTotEx == 0);
     }
 
     public void ajoute(int i){
         /* pré-requis : ° <= i < tabFreq.length
            action : ajoute un exemplaire de i à this */
-        // À COMPLÉTER
+        this.tabFreq[i]++;
+        this.nbTotEx++;
+    }
+    
+    public boolean retire(int i){
+        /* pré-requis : 0 <= i < tabFreq.length
+           action/résultat : retire un exemplaire de i de this s’il en existe, et retourne vrai ssi cette action a pu être effectuée */
+        boolean sortie = false;
+        if (this.tabFreq[i] > 0){
+            this.tabFreq[i]--;
+            this.nbTotEx--;
+            resultat = true;
+        }
+        return sortie;
+    }
+    
+    public int retireAleat(){
+        /* pré-requis : this est non vide
+           action/résultat : retire de this un exemplaire choisi aléatoirement et le retourne */
+        int i = 0;
+        while (i == 0){
+            j = Ut.randomMinMax(0, this.tabFreq.length-1);
+            i = this.tabFreq[j];
+        }
+        this.tabFreq[j]--;
+        this.nbTotEx--;
+        return i;
+    }
+    
+    public boolean transfere(MEE e, int i){
+        /* pré-requis : 0 <= i < tabFreq.length
+           action/résultat : transfère un exemplaire de i de this vers e s’il en existe, et retourne vrai ssi cette action a pu être effectuée */
+        boolean sortie = false;
+        if (this.tabFreq[i] > 0) {
+            this.tabFreq[i]--;
+            this.nbTotEx--;
+            e.tabFreq[i]++;
+            e.nbTotEx++;
+            sortie = true;
+        }
+        return sortie;
+    }
+    
+    public void transfereAleat(MEE e, int k){
+        /* pré-requis : k >= 0
+           action : tranfère k exemplaires choisis aléatoirement de this vers e dans la limite du contenu de this */
+        // A compléter
+    }
+    
+    public int sommeValeurs(int[] v){
+        /* pré-requis : tabFreq.length <= v.length
+           résultat : retourne la somme des valeurs des exemplaires des éléments de this, la valeur d’un exemplaire d’un élément i de this étant égale à v[i] */
+        int somme = 0;
+        for (int i = 0; i < this.tabFreq.length; i++){
+            somme += this.tabFreq[i] * v[i];
+        }
+        return somme;
     }
 }
