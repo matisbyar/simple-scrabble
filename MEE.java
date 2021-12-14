@@ -26,7 +26,7 @@ public class MEE {
     }
 
     public void ajoute(int i){
-        /* pré-requis : ° <= i < tabFreq.length
+        /* pré-requis : 0 <= i < tabFreq.length
            action : ajoute un exemplaire de i à this */
         this.tabFreq[i]++;
         this.nbTotEx++;
@@ -39,7 +39,7 @@ public class MEE {
         if (this.tabFreq[i] > 0){
             this.tabFreq[i]--;
             this.nbTotEx--;
-            resultat = true;
+            sortie = true;
         }
         return sortie;
     }
@@ -48,6 +48,7 @@ public class MEE {
         /* pré-requis : this est non vide
            action/résultat : retire de this un exemplaire choisi aléatoirement et le retourne */
         int i = 0;
+        int j = 0;
         while (i == 0){
             j = Ut.randomMinMax(0, this.tabFreq.length-1);
             i = this.tabFreq[j];
@@ -71,10 +72,17 @@ public class MEE {
         return sortie;
     }
     
-    public void transfereAleat(MEE e, int k){
+    public int transfereAleat(MEE e, int k){
         /* pré-requis : k >= 0
-           action : tranfère k exemplaires choisis aléatoirement de this vers e dans la limite du contenu de this */
-        // A compléter
+           action : tranfère k exemplaires choisis aléatoirement de this vers e dans la limite du contenu de this 
+           résultat : le nombre d'exemplaires effectivement transférés
+           stratégie : utise retraitAleatoire() et ajoute() simultanément. */
+        int nbElementsTransferes = 0;
+        while(nbElementsTransferes < k && !this.estVide()){
+            e.ajoute(this.retireAleat());
+            nbElementsTransferes++;
+        }
+        return nbElementsTransferes;
     }
     
     public int sommeValeurs(int[] v){
