@@ -20,6 +20,11 @@ public class MEE {
         this.nbTotEx = e.nbTotEx;
     }
 
+    public int getNbTotEx(){
+        /* résultat : accesse en lecture le nombre total d'exemplaires */
+        return this.nbTotEx;
+    }
+
     public boolean estVide(){
         /* résultat : vrai ssi cet ensemble est vide */
         return (this.tabFreq.length == 0 || this.nbTotEx == 0);
