@@ -4,6 +4,7 @@ public class Joueur {
     private int score;      // le score du joueur
 
     public Joueur(String unNom){
+        /* Constructeur */
         this.nom = unNom;
     }
 
@@ -13,10 +14,12 @@ public class Joueur {
     }
 
     public int getScore(){
+        /* résultat : renvoie le score de this */
         return this.score;
     }
 
     public void ajouteScore(int nb){
+        /* résultat : ajoute nb au score de this */
         this.score += nb;
     }
 
