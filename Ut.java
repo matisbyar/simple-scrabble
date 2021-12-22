@@ -67,29 +67,28 @@ public class Ut {
     }
 
     public static void afficher (int [][] mat) {
-	for (int i = 0 ; i < mat.length ; i++) {
-	    for (int j = 0 ; j < mat[i].length ; j++) {
-		System.out.print(mat[i][j] + "\t");
-	    }
-	    sautLigne();
-	}
-    }
-    public static void afficherSL (int [][] mat) {
-	afficher(mat); passerLigne();
+		for (int i = 0 ; i < mat.length ; i++) {
+			for (int j = 0 ; j < mat[i].length ; j++) {
+				System.out.print(mat[i][j] + "\t");
+				}
+				sautLigne();
+			}
+		}
+		public static void afficherSL (int [][] mat) {
+		afficher(mat); passerLigne();
     }
     
     public static int saisirEntier () {
-	
-	Scanner clavier = new Scanner(System.in);
-	String s = clavier.nextLine(); //int lu = clavier.nextInt();
-	int lu=456;
-	try{
-	    lu = Integer.parseInt(s);
-	}
-	catch(NumberFormatException ex){
-	    System.out.println("Ce n'est pas un entier valide");
-	}
-	return lu;
+		Scanner clavier = new Scanner(System.in);
+		String s = clavier.nextLine(); //int lu = clavier.nextInt();
+		int lu=456;
+		try{
+			lu = Integer.parseInt(s);
+		}
+		catch(NumberFormatException ex){
+			System.out.println("Ce n'est pas un entier valide");
+		}
+		return lu;
     }
 
     public static double saisirDouble () {
@@ -190,8 +189,8 @@ public class Ut {
 	// Resultat : un entier entre min et max choisi aleatoirement
 	Random rand = new Random();
 	int res = rand.nextInt(max - min + 1) + min;
-	// System.out.println(res + " in [" + min + "," + max + "]");
-	// assert min <= res && res <= max : "tirage aleatoire hors des bornes";
+	// System.out.println(res + " in [" + min + "," + max + "]")
+	// assert min <= res && res <= max : "tirage aleatoire hors des bornes"
 	return res;
     }
 
@@ -227,6 +226,23 @@ public class Ut {
 	// Resultat : vrai ssi an est bissextile
 	return an % 400 == 0 || an % 4 == 0 && an % 100 != 0;
     }
+
+	public static int majToIndex (char c) {
+		// Prerequis : c est un caractere entre 'a' et 'z'
+		// Resultat : la valeur 0 pour 'a', 12 pour 'm', 25 pour 'z'...
+			return (int)c - 65;
+		}
+	
+	public static char indexToMaj (int i) {
+	// Prerequis : i est un entier entre 0 et 25 
+	//             (par exemple, indice d'un tableau)
+	// Resultat : la valeur 'a' pour 0, 'm' pour 12, 'z' pour 25...b
+		return (char)(i + 65);
+	}
+
+	public static boolean estUneMajuscule (char c){
+		return Character.isUpperCase(c);
+	}
     
 } // end class
 

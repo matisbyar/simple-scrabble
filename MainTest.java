@@ -1,6 +1,5 @@
-public class Plateau {
-    private Case[][] g;     // g pour grille
-    int[][] plateau = { {5, 1, 1, 2, 1, 1, 1, 5, 1, 1, 1, 2, 1, 1, 5},
+public class MainTest {
+    static int[][] plateau = { {5, 1, 1, 2, 1, 1, 1, 5, 1, 1, 1, 2, 1, 1, 5},
                         {1, 4, 1, 1, 1, 3, 1, 1, 1, 3, 1, 1, 1, 4, 1},
                         {1, 1, 4, 1, 1, 1, 2, 1, 2, 1, 1, 1, 4, 1, 1},
                         {2, 1, 1, 4, 1, 1, 1, 2, 1, 1, 1, 4, 1, 1, 2},
@@ -16,7 +15,7 @@ public class Plateau {
                         {1, 4, 1, 1, 1, 3, 1, 1, 1, 3, 1, 1, 1, 4, 1},
                         {5, 1, 1, 2, 1, 1, 1, 5, 1, 1, 1, 2, 1, 1, 5}};
 
-    public String toString(){
+    public static void main(String args[]){
         String affichage = "     1   2   3   4   5   6   7   8   9   10  11  12  13  14  15\n";
         for(int i = 0; i < plateau.length; i++){
             affichage += i + 1 + "\t";
@@ -26,8 +25,10 @@ public class Plateau {
                 affichage += " | ";
             }
             affichage += "\n";
+            //affichage += "    ____________________________________________________________ \n";
             affichage += "    -------------------------------------------------------------- \n";
+            
         }
-        return affichage;
+        Ut.afficher(affichage);
     }
 }
