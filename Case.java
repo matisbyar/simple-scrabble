@@ -1,5 +1,5 @@
 public class Case {
-    private int couleur;            // la couleur est un entier entre 1 et 5
+    private int couleur;             // la couleur est un entier entre 1 et 5
     private char lettre = ' ';       // si la lettre est recouverte, la variable lettre contient la contient
     
     public Case(int uneCouleur){

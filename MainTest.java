@@ -1,4 +1,5 @@
 public class MainTest {
+    static Case[][]g;
     static int[][] plateau = { {5, 1, 1, 2, 1, 1, 1, 5, 1, 1, 1, 2, 1, 1, 5},
                         {1, 4, 1, 1, 1, 3, 1, 1, 1, 3, 1, 1, 1, 4, 1},
                         {1, 1, 4, 1, 1, 1, 2, 1, 2, 1, 1, 1, 4, 1, 1},
@@ -17,11 +18,11 @@ public class MainTest {
 
     public static void main(String args[]){
         String affichage = "     1   2   3   4   5   6   7   8   9   10  11  12  13  14  15\n";
-        for(int i = 0; i < plateau.length; i++){
+        for(int i = 0; i < g.length; i++){
             affichage += i + 1 + "\t";
             affichage += " || ";
-            for(int j = 0; j < plateau.length; j++){
-                affichage += plateau[i][j];
+            for(int j = 0; j < g.length; j++){
+                affichage += g[i][j];
                 affichage += " | ";
             }
             affichage += "\n";
