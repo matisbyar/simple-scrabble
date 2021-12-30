@@ -45,5 +45,41 @@ public class Plateau {
            résultat : retourne vrai ssi le placement de mot sur this à partir de la case (numLig, numCol) dans le sens donné par sens
                       à l'aide des jetons de e est valide. */
         // VOIR LE SUJET POUR TOUTES LES VÉRIFICATIONS
+        boolean verification = true;
+        int finVerification = 0;
+        int moitie = (g.length+1)/2;
+        
+        // Dans le cas où le plateau est vide
+        if (plateau[moitie][moitie] == 4) {
+            while (verification || finVerification == 0) {
+                // Le mot proposé a au moins 2 lettres
+                if (mot.length < 2) {
+                    verification = false;
+                }
+                // La zone de placement du mot contient la case centrale du plateau
+                else if (numLig != moitie && numCol != moitie) {
+                    verification = false;
+                }
+                else if (numLig == moitie && (sens = 'v' || numCol > moitie || numCol+mot.length < moitie)) {
+                    verification = false;
+                }
+                else if (numCol == moitie && (sens = 'h' || numLig > moitie || numLig+mot.length < moitie)) {
+                    verification = false;
+                }
+                // Le chevalet du joueur proposant le mot contient les lettres permettant de former le mot
+                MEE chevalet = MEE(e);
+                for (int i = 0; i < mot.length; i++) {
+                    verification = chevalet.retire(Ut.majToIndex(mot.charAt(i)));
+                }
+                finVerification = 1;
+            }
+        }
+        // Dans le cas où le plateau n'est pas vide
+        else {
+            while (verification || finVerification == 0) {
+                // La zone de placement du mot ne dépasse pas de la grille
+                if ((sens == 'h' && numCol+mot.length >= g.length) || (sens == 'v' && numLig+mot.length >= g.length)) {
+                    verification = false; 
+                }
     }
 }
