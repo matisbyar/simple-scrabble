@@ -29,4 +29,14 @@ public class Joueur {
        return this.chevalet.sommeValeurs(nbPointsJet);
        // La fonction "sommeValeurs" appartient à la classe MEE
     }
+
+    public void prendJetons(MEE s, int nbJetons){
+        /* pré-requis : les éléments de s sont inférieurs à 26
+           action : simule la prise de nbJetons par this dans le sac s, dans la limite de son contenu */
+        s.transfereAleat(this.chevalet, nbJetons);
+    }
+
+    public int joue(Plateau p, MEE s, int[] nbPointsJet){
+        /* pré-requis : 
+    }
 }
