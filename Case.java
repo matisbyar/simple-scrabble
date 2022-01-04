@@ -16,7 +16,6 @@ public class Case {
 
     public char getLettre(){
         /* pré-requis : cette case est recouverte */
-        // JE PENSE QUE CELA EST FAUX
         return this.lettre;
     }
 
