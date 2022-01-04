@@ -11,13 +11,17 @@ public class MEE {
     public MEE(int[] tab){
         /* pré-requis : les éléments de tab sont positifs ou nuls
            action : crée un multi-ensemble dont le tableau de fréquences est une copie de tab */
-        this.tabFreq = tab;
+        for(int i = 0; i < tabFreq.length; i++){
+            this.tabFreq[i] = tab[i];
+        }
     }
 
     public MEE(MEE e){
         /* constructeur par copie */
-        this.tabFreq = e.tabFreq;
         this.nbTotEx = e.nbTotEx;
+        for(int i = 0; i < tabFreq.length; i++){
+            this.tabFreq[i] = e.tabFreq[i];
+        }
     }
 
     public int getNbTotEx(){

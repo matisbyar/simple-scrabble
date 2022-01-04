@@ -70,14 +70,8 @@ public class Joueur {
     public void joueMotAux(Plateau p, MEE s, int[] nbPointsJet, String mot, int numLig, int numCol, char sens){
         /* pré-requis : cf. joueMot et le placement de mot à partir de la case (numLig, numCol) dans le sens donné par sens est valide
            action : simule le placement d'un mot de this */
-        for(int i = 0; i < mot.length(); i++){
-            if(sens == 'h' && p.placementValide(mot, numLig, numCol, sens, s)){
-                p[numLig + i][numCol] = mot.charAt(i);
-                nbPointsJet
-            }else if(sens == 'v' && p.placementValide(mot, numLig, numCol, sens, s)){
-                p[numLig][numCol + i] = mot.charAt(i);
-            }
-        }
-        // il manque l'incrémentation du nbPointsJet et le remplissage du chevalet pour qu'il possède 7 jetons as expected.
+        p.place(mot, numLig, numCol, sens, s);
+        this.ajouteScore(p.nbPointsPlacement(mot, numLig, numCol, sens, nbPointsJet));
+
     }
 }
