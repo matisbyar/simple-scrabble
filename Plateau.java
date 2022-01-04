@@ -1,5 +1,5 @@
 public class Plateau {
-    private Case[][] g = new Case[15][15];     // g pour grille
+    private Case[][] g;     // g pour grille
 
     public Plateau(){
         int[][] plateau = { {5, 1, 1, 2, 1, 1, 1, 5, 1, 1, 1, 2, 1, 1, 5},
@@ -53,7 +53,7 @@ public class Plateau {
         int moitie = (g.length+1)/2;
         
         // Dans le cas où le plateau est vide
-        if (plateau[moitie][moitie] == 4) {
+        if (g[moitie][moitie] == 4) {
             while (verification) {
                 // Le mot proposé a au moins 2 lettres
                 if (mot.length() < 2) {
