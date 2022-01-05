@@ -68,10 +68,26 @@ public class Joueur {
     }
 
     public void joueMotAux(Plateau p, MEE s, int[] nbPointsJet, String mot, int numLig, int numCol, char sens){
-        /* pré-requis : cf. joueMot et le placement de mot à partir de la case (numLig, numCol) dans le sens donné par sens est valide
-           action : simule le placement d'un mot de this */
+        /** pré-requis : cf. joueMot et le placement de mot à partir de la case (numLig, numCol) dans le sens donné par sens est valide
+            action : simule le placement d'un mot de this */
         p.place(mot, numLig, numCol, sens, s);
         this.ajouteScore(p.nbPointsPlacement(mot, numLig, numCol, sens, nbPointsJet));
 
     }
+    
+    public void echangeJetons(MEE sac) {
+        /** pré-requis : sac peut contenir des entiers de 0 à 25
+            action : simule l’échange de jetons de ce joueur :
+                - saisie de la suite de lettres du chevalet à échanger en vérifiant que la suite soit correcte
+                - échange de jetons entre le chevalet du joueur et le sac
+            stratégie : appelle les méthodes estCorrectPourEchange et echangeJetonsAux */
+    }
+        
+    public boolean estCorrectPourEchange (String mot) {
+        /** résultat : vrai ssi les caractères de mot correspondent tous à des lettres majuscules et l’ensemble de ces caractères est un sous-ensemble des jetons du chevalet de this */
+    }
+    
+    public void echangeJetonsAux(MEE sac, String ensJetons) {
+        /** pré-requis : sac peut contenir des entiers de 0 à 25 et ensJetons est un ensemble de jetons correct pour l’échange
+            action : simule l’échange de jetons de ensJetons avec des jetons du sac tirés aléatoirement. */
 }
