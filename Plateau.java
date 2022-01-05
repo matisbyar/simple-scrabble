@@ -83,7 +83,7 @@ public class Plateau {
         }
         // Dans le cas où le plateau n'est pas vide
         else {
-            while (verification) {
+            while (verification && bouclesortie) {
                 // La zone de placement du mot ne dépasse pas de la grille
                 if ((sens == 'h' && numCol + 1 + mot.length() >= g.length) || (sens == 'v' && numLig + 1 + mot.length() >= g.length)) {
                     verification = false;
@@ -96,18 +96,80 @@ public class Plateau {
                 else if ((sens == 'h' && numCol + mot.length() != 15 && this.g[numLig][numCol + 1].estRecouverte()) || (sens == 'v' && numLig + mot.length() != 15 && this.g[numLig + 1][numCol].estRecouverte())) {
                     verification = false;
                 }
-                // La zone de placement contient au moins une case non recouverte par un jeton, et une case non recouverte
-                boolean auMoinsUne = true;
+                // La zone de placement contient au moins une case non recouverte
+                boolean aucuneOccupee = true;
                 int i = 0;
-                // Case non recouverte
-                if (sens = 'h') {
-                    while (auMoinsUne && i < mot.length) {
-                        if (!this.g[numLig][numCol + i].estRecouverte()) {
+                else if (sens = 'h') {
+                    while (aucuneOccupee && i < mot.length) {
+                        if (this.g[numLig][numCol + i].estRecouverte()) {
+                            i++;
+                        }
+                        else {
+                            aucuneOccupee = false;
                         }
                     }
                 }
-                
-                            
+                else if (sens = 'v') {
+                    while (aucuneOccupee && i < mot.length) {
+                        if (this.g[numLig + i][numCol].estRecouverte()) {
+                            i++;
+                        }
+                        else {
+                            aucuneOccupee = false;
+                        }
+                    }
+                }
+                else if (aucuneOccupee) {
+                    verification = false;
+                }
+                // La zone de placement contient au moins une case recouverte
+                boolean aucuneRecouverte = true;
+                int j = 0;
+                else if (sens = 'h') {
+                    while (aucuneRecouverte && j < mot.length) {
+                        if (this.g[numLig][numCol + j].estRecouverte()) {
+                           aucuneRecouverte = false;
+                        }
+                        else {
+                             j++;
+                        }
+                    }
+                }
+                else if (sens = 'v') {
+                    while (aucuneRecouverte && j < mot.length) {
+                        if (this.g[numLig + j][numCol].estRecouverte()) {
+                            aucuneRecouverte = false;
+                        }
+                        else {
+                            j++;
+                        }
+                    }
+                }
+                else if (aucuneRecouverte) {
+                    verification = false;
+                }
+                // Pour chaque case recouverte de la zone de placement du mot, la lettre du jeton est la même que celle de la case
+                else if (sens = 'h') {
+                    for (int k = 0; k < mot.length, k++) {
+                        if (this.g[numLig][numCol + k].estRecouverte() && this.g[numLig][numCol + k].getLettre != mot.charAt(i)) {
+                            verification = false;
+                        }
+                    }
+                }
+                else if (sens = 'v') {
+                    for (int k = 0; k < mot.length, k++) {
+                        if (this.g[numLig + k][numCol].estRecouverte() && this.g[numLig + k][numCol].getLettre != mot.charAt(i)) {
+                            verification = false;
+                        }
+                    }
+                }
+                // Le chevalet du joueur proposant le mot contient les lettres permettant de former le mot
+                MEE chevalet = new MEE(e);
+                for (int l = 0; l < mot.length(); l++) {
+                    verification = chevalet.retire(Ut.majToIndex(mot.charAt(l)));
+                }
+                // Toutes les vérifications sont valides, donc on sort du while
+                bouclesortie = false;
             }
         }
         return verification;
