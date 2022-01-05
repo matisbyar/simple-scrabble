@@ -53,11 +53,12 @@ public class Plateau {
          * à l'aide des jetons de e est valide.
          */
         boolean verification = true;
-        int moitie = (g.length + 1) / 2;
+        boolean bouclesortie = true;
+        int moitie = (g.length - 1) / 2;
 
         // Dans le cas où le plateau est vide
-        if (this.g[moitie][moitie].getCouleur() == 4) {
-            while (verification) {
+        if (this.g[moitie][moitie].getLettre() == ) {
+            while (verification && bouclesortie) {
                 // Le mot proposé a au moins 2 lettres
                 if (mot.length() < 2) {
                     verification = false;
@@ -70,23 +71,43 @@ public class Plateau {
                 } else if (numCol == moitie && (sens == 'h' || numLig > moitie || numLig + mot.length() < moitie)) {
                     verification = false;
                 }
-                // Le chevalet du joueur proposant le mot contient les lettres permettant de
-                // former le mot
+                
+                // Le chevalet du joueur proposant le mot contient les lettres permettant de former le mot
                 MEE chevalet = new MEE(e);
                 for (int i = 0; i < mot.length(); i++) {
                     verification = chevalet.retire(Ut.majToIndex(mot.charAt(i)));
                 }
-
+                // Toutes les vérifications sont valides, donc on sort du while
+                bouclesortie = false;
             }
         }
         // Dans le cas où le plateau n'est pas vide
         else {
             while (verification) {
                 // La zone de placement du mot ne dépasse pas de la grille
-                if ((sens == 'h' && numCol + mot.length() >= g.length)
-                        || (sens == 'v' && numLig + mot.length() >= g.length)) {
+                if ((sens == 'h' && numCol + 1 + mot.length() >= g.length) || (sens == 'v' && numLig + 1 + mot.length() >= g.length)) {
                     verification = false;
                 }
+                // La zone de placement n'est pas précédée d'une case recouverte par un jeton
+                else if ((sens == 'h' && numCol != 0 && this.g[numLig][numCol - 1].estRecouverte()) || (sens == 'v' && numLig != 0 && this.g[numLig - 1][numCol].estRecouverte())) {
+                    verification = false;
+                }
+                // La zone de placement n'est pas suivie d'une case recouverte par un jeton
+                else if ((sens == 'h' && numCol + mot.length() != 15 && this.g[numLig][numCol + 1].estRecouverte()) || (sens == 'v' && numLig + mot.length() != 15 && this.g[numLig + 1][numCol].estRecouverte())) {
+                    verification = false;
+                }
+                // La zone de placement contient au moins une case non recouverte par un jeton, et une case non recouverte
+                boolean auMoinsUne = true;
+                int i = 0;
+                // Case non recouverte
+                if (sens = 'h') {
+                    while (auMoinsUne && i < mot.length) {
+                        if (!this.g[numLig][numCol + i].estRecouverte()) {
+                        }
+                    }
+                }
+                
+                            
             }
         }
         return verification;
