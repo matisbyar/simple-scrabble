@@ -59,7 +59,6 @@ public class Plateau {
         boolean aucuneRecouverte = true;
         int j = 0;
 
-
         // Dans le cas où le plateau est vide
         if (!this.g[moitie][moitie].estRecouverte()) {
             while (verification && bouclesortie) {
