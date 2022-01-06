@@ -78,8 +78,8 @@ public class Plateau {
                 
                 // Le chevalet du joueur proposant le mot contient les lettres permettant de former le mot
                 MEE chevalet = new MEE(e);
-                for (int i = 0; i < mot.length(); i++) {
-                    verification = chevalet.retire(Ut.majToIndex(mot.charAt(i)));
+                for (int a = 0; a < mot.length(); a++) {
+                    verification = chevalet.retire(Ut.majToIndex(mot.charAt(a)));
                 }
                 // Toutes les vérifications sont valides, donc on sort du while
                 bouclesortie = false;
@@ -285,13 +285,13 @@ public class Plateau {
         /* pré-requis : le placement de mot sur this à partir de la case (numLig, numCol) dans le sens donné par sens à l'aide des jetons de e est valide.
            action/résultat : effectue ce placement et retourne le nombre de jetons retirés de e. */
         int nbJetonsRetire = 0;
-        if(placementValide(mot, numLig, numCol, sens, e) && sens == 'h'){
+        if (placementValide(mot, numLig, numCol, sens, e) && sens == 'h'){
             for(int i = 0; i < mot.length(); i++){
                 this.g[numLig][numCol + i].setLettre(mot.charAt(i));
                 e.retire(Ut.majToIndex(mot.charAt(i)));
             }
             nbJetonsRetire = 7 - mot.length();
-        }else if(placementValide(mot, numLig, numCol, sens, e) && sens == 'v'){
+        } else if(placementValide(mot, numLig, numCol, sens, e) && sens == 'v'){
             for(int i = 0; i < mot.length(); i++){
                 this.g[numLig + i][numCol].setLettre(mot.charAt(i));
                 e.retire(Ut.majToIndex(mot.charAt(i)));
