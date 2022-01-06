@@ -1,5 +1,5 @@
 public class MEE {
-    private int[] tabFreq;  // tabFreq[i] est le nombre d'exemplaires (fréquence) de l'élément i.
+    private int[] tabFreq = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};  // tabFreq[i] est le nombre d'exemplaires (fréquence) de l'élément i.
     private int nbTotEx;    // nombre total d'exemplaires
 
     public MEE(int max){
@@ -11,8 +11,9 @@ public class MEE {
     public MEE(int[] tab){
         /* pré-requis : les éléments de tab sont positifs ou nuls
            action : crée un multi-ensemble dont le tableau de fréquences est une copie de tab */
-        for(int i = 0; i < tabFreq.length; i++){
+        for(int i = 0; i < tab.length; i++){
             this.tabFreq[i] = tab[i];
+            this.nbTotEx += this.tabFreq[i];
         }
     }
 
