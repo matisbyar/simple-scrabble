@@ -4,4 +4,21 @@ public class Scrabble {
     private int numJoueur;      // joueur courant (entre 0 et joueurs.length-1)
     private Plateau plateau;
     private MEE sac;
+
+    public Scrabble(String[] nomsJoueurs){
+        for(int i = 0; i < nomsJoueurs.length; i++){
+            this.joueurs[i] = new Joueur(nomsJoueurs[i]);
+        }
+        numJoueur = Ut.randomMinMax(0, joueurs.length - 1);
+    }
+
+    public String toString(){
+        return plateau.toString() + "\nLe joueur " + joueurs[numJoueur] + " possède la main.";
+    }
+
+    public void partie(){
+        for(int i = 0; i < joueurs.length; i++){
+            joueurs[i].prendJetons(sac, 7);
+        }
+    }
 }
