@@ -40,18 +40,7 @@ public class Joueur {
         /* pré-requis : les éléments de s sont inférieurs à 26 et nbPointsJet.length >= 26
             action : simule le coup de this : this choisit de passer son tour, d'échanger des jetons ou de placer un mot
             résultat : -1 si this a passé son tour, 1 si son chevalet est vide et 0 sinon */
-        int resultat = 0;
-        Ut.afficher("Que souhaitez vous faire ? \n1. Je passe mon tour.\n2. J'échange des jetons\n3. Je place un mot.");
-        int choix = Ut.saisirEntier();
-        if(choix == 1){
-            resultat = -1;
-        }else if(choix == 2){
-            this.prendJetons(s, 1);
-            
-        }else if(choix == 3){
-
-        }
-        return resultat;
+        
     }
 
     public boolean joueMot(Plateau p, MEE s, int[] nbPointsJet){
