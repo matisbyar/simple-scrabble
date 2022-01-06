@@ -81,13 +81,39 @@ public class Joueur {
                 - saisie de la suite de lettres du chevalet à échanger en vérifiant que la suite soit correcte
                 - échange de jetons entre le chevalet du joueur et le sac
             stratégie : appelle les méthodes estCorrectPourEchange et echangeJetonsAux */
+        boolean motIncorrect = false;
+        while (motIncorrect) {
+            Ut.afficher('Veuillez saisir, en majuscule, les lettres que vous souhaitez afficher :\n');
+            String mot = Ut.saisirChaine();
+            if (this.estCorrectPourEchange(mot)) {
+                this.echangeJetonsAux(sac, mot);
+            }
+        }
     }
         
     public boolean estCorrectPourEchange (String mot) {
         /** résultat : vrai ssi les caractères de mot correspondent tous à des lettres majuscules et l’ensemble de ces caractères est un sous-ensemble des jetons du chevalet de this */
+        boolean resultat = true;
+        int i = 0;
+        MEE copie = new MEE(this.chevalet);
+        while (resultat && i < mot.length()) {
+            if (Ut.estUneMajuscule(mot.charAt(i))) {
+                resultat = copie.retire(mot.charAt(i));
+                i++;
+            }
+            else {
+                resultat = false;
+            }
+        }
+        return resultat;
     }
     
     public void echangeJetonsAux(MEE sac, String ensJetons) {
         /** pré-requis : sac peut contenir des entiers de 0 à 25 et ensJetons est un ensemble de jetons correct pour l’échange
             action : simule l’échange de jetons de ensJetons avec des jetons du sac tirés aléatoirement. */
+        for (int i = 0; i < ensJetons.length(); i++) {
+            this.chevalet.transfere(sac, Ut.majToIndex(ensJetons.charAt(i)));
+        }
+        sac.transfereAleat(this.chevalet, ensJetons.length())
+    }
 }
