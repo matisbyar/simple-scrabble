@@ -91,8 +91,8 @@ public class Joueur {
         sens = Ut.saisirCaractere();
         Ut.afficher("CapeloDico procède à la vérification du mot. Le mot " + mot + " est-il valide (y/n)? ");
         valide = Ut.saisirCaractere();
-        if(p.placementValide(mot, numLig, numCol, sens, this.chevalet) && valide == 'y'){
-            this.joueMotAux(p, s, nbPointsJet, mot, numLig, numCol, sens);
+        if(p.placementValide(mot, numLig, numCol, sens, this.chevalet) && valide == 'y'){        // si le mot et son placement sont valides 
+            this.joueMotAux(p, s, nbPointsJet, mot, numLig, numCol, sens);                       // alors, on joue le mot avec les informations que le joueur a entré
             return true;
         }
         else{
@@ -103,9 +103,9 @@ public class Joueur {
     public void joueMotAux(Plateau p, MEE s, int[] nbPointsJet, String mot, int numLig, int numCol, char sens){
         /** pré-requis : cf. joueMot et le placement de mot à partir de la case (numLig, numCol) dans le sens donné par sens est valide
             action : simule le placement d'un mot de this */
-        int nbTransfert = p.place(mot, numLig, numCol, sens, this.chevalet);
-        s.transfereAleat(this.chevalet, nbTransfert);
-        this.ajouteScore(p.nbPointsPlacement(mot, numLig, numCol, sens, nbPointsJet));
+        int nbTransfert = p.place(mot, numLig, numCol, sens, this.chevalet);                // on créé une variable nbTransfert qui récupère et effectue la méthode place (renvoyant le nombre de jetons placés)
+        s.transfereAleat(this.chevalet, nbTransfert);                                       // on tranfère ensuite nbTransfert jetons du sac vers le chevalet
+        this.ajouteScore(p.nbPointsPlacement(mot, numLig, numCol, sens, nbPointsJet));      // enfin, on ajoute le score du joueur avec le nombre de points qu'il récupère quand il place son mot
     }
     
     public void echangeJetons(MEE sac) {
@@ -115,11 +115,11 @@ public class Joueur {
                 - échange de jetons entre le chevalet du joueur et le sac
             stratégie : appelle les méthodes estCorrectPourEchange et echangeJetonsAux */
         boolean motIncorrect = true;
-        while (motIncorrect) {
+        while (motIncorrect) {                                                                              // tant que le mot n'est pas validé
             Ut.afficher("Veuillez saisir, en majuscule, les lettres que vous souhaitez afficher :\n");
-            String mot = Ut.saisirChaine();
-            if (this.estCorrectPourEchange(mot)) {
-                this.echangeJetonsAux(sac, mot);
+            String mot = Ut.saisirChaine();                                                                 // on demande au joueur de saisir un mot
+            if (this.estCorrectPourEchange(mot)) {                                                          // si les lettres du mot sont en majuscule, et peuvent être échangés depuis le chevalet du joueur
+                this.echangeJetonsAux(sac, mot);                                                            // alors, on échange les lettres du mot contre des lettres aléatoires du sac
                 motIncorrect = false;
             }
         }
@@ -129,10 +129,10 @@ public class Joueur {
         /** résultat : vrai ssi les caractères de mot correspondent tous à des lettres majuscules et l’ensemble de ces caractères est un sous-ensemble des jetons du chevalet de this */
         boolean resultat = true;
         int i = 0;
-        MEE copie = new MEE(this.chevalet);
-        while (resultat && i < mot.length()) {
-            if (Ut.estUneMajuscule(mot.charAt(i))) {
-                resultat = copie.retire(mot.charAt(i));
+        MEE copie = new MEE(this.chevalet);                 // on effectue une copie du chevalet du joueur
+        while (resultat && i < mot.length()) {              // tant que le résultat est vrai et que l'on a pas terminé de parcourir le mot
+            if (Ut.estUneMajuscule(mot.charAt(i))) {        // on vérifie : si le mot contient que des majuscules
+                resultat = copie.retire(mot.charAt(i));     // on récupère la sortie et on la rentre dans resultat de la méthode retire, et on effectue un retrait de la lettre 
                 i++;
             }
             else {
@@ -145,9 +145,9 @@ public class Joueur {
     public void echangeJetonsAux(MEE sac, String ensJetons) {
         /** pré-requis : sac peut contenir des entiers de 0 à 25 et ensJetons est un ensemble de jetons correct pour l’échange
             action : simule l’échange de jetons de ensJetons avec des jetons du sac tirés aléatoirement. */
-        for (int i = 0; i < ensJetons.length(); i++) {
-            this.chevalet.transfere(sac, Ut.majToIndex(ensJetons.charAt(i)));
+        for (int i = 0; i < ensJetons.length(); i++) {                              // pour la longueur du mot
+            this.chevalet.transfere(sac, Ut.majToIndex(ensJetons.charAt(i)));       // on tranfère la lettre du mot d'indice i, depuis le chevalet du joueur vers le sac
         }
-        sac.transfereAleat(this.chevalet, ensJetons.length());
+        sac.transfereAleat(this.chevalet, ensJetons.length());                      // on récupère (nombre de lettres dans le mot) jetons aléatoires dans le sac et on les transfère dans le chevalet du joueur
     }
 }

@@ -42,6 +42,7 @@ public class Plateau {
         }
         return affichage;
     }
+
     public boolean placementValide(String mot, int numLig, int numCol, char sens, MEE e) {
         /*
          * pré-requis : mot est un mot accepté par CapeloDico, 0 <= numLig <= 14,
@@ -188,29 +189,21 @@ public class Plateau {
         int nbPointsPlacement = 0;
         int coefCumul = 1; // on initialise une variable qui compte les "mot compte double" ou "mot compte triple".
         for (int i = 0; i < mot.length(); i++) {
-            // Dans le cas où le sens est horizontal et que la case est grise (pas de
-            // valorisation)
             // Dans le cas où le sens est horizontal et que la case est grise (pas de valorisation)
             if (sens == 'h' && this.g[numLig][numCol].getCouleur() == 1) {
                 nbPointsPlacement += nbPointsJet[Ut.majToIndex(mot.charAt(i))];
                 numCol++;
             }
-            // Dans le cas où le sens est horizontal et que la case est bleu clair (lettre
-            // compte double)
             // Dans le cas où le sens est horizontal et que la case est bleu clair (lettre compte double)
             else if (sens == 'h' && this.g[numLig][numCol].getCouleur() == 2) {
                 nbPointsPlacement += nbPointsJet[Ut.majToIndex(mot.charAt(i))] * 2;
                 numCol++;
             }
-            // Dans le cas où le sens est horizontal et que la case est bleue (lettre compte
-            // triple)
-            // Dans le cas où le sens est horizontal et que la case est bleue (lettre compte triple)
+            // Dans le cas où le sens est horizontal et que la case est bleue (lettre compte riple)
             else if (sens == 'h' && this.g[numLig][numCol].getCouleur() == 3) {
                 nbPointsPlacement += nbPointsJet[Ut.majToIndex(mot.charAt(i))] * 3;
                 numCol++;
             }
-            // Dans le cas où le sens est horizontal et que la case est rose (mot compte
-            // double)
             // Dans le cas où le sens est horizontal et que la case est rose (mot compte double)
             else if (sens == 'h' && this.g[numLig][numCol].getCouleur() == 4) {
                 for (int j = 0; i < mot.length(); j++) {
@@ -220,8 +213,6 @@ public class Plateau {
                 nbPointsPlacement *= 2;
                 coefCumul *= 2;
             }
-            // Dans le cas où le sens est horizontal et que la case est rouge (mot compte
-            // triple)
             // Dans le cas où le sens est horizontal et que la case est rouge (mot compte triple)
             else if (sens == 'h' && this.g[numLig][numCol].getCouleur() == 5) {
                 for (int j = 0; i < mot.length(); j++) {
@@ -232,29 +223,21 @@ public class Plateau {
                 coefCumul *= 3;
             }
 
-            // Dans le cas où le sens est vertical et que la case est grise (pas de
-            // valorisation)
             // Dans le cas où le sens est vertical et que la case est grise (pas de valorisation)
             if (sens == 'v' && this.g[numLig][numCol].getCouleur() == 1) {
                 nbPointsPlacement += nbPointsJet[Ut.majToIndex(mot.charAt(i))];
                 numCol++;
             }
-            // Dans le cas où le sens est vertical et que la case est bleu clair (lettre
-            // compte double)
             // Dans le cas où le sens est vertical et que la case est bleu clair (lettre compte double)
             else if (sens == 'v' && this.g[numLig][numCol].getCouleur() == 2) {
                 nbPointsPlacement += nbPointsJet[Ut.majToIndex(mot.charAt(i))] * 2;
                 numCol++;
             }
-            // Dans le cas où le sens est vertical et que la case est bleue (lettre compte
-            // triple)
             // Dans le cas où le sens est vertical et que la case est bleue (lettre compte triple)
             else if (sens == 'v' && this.g[numLig][numCol].getCouleur() == 3) {
                 nbPointsPlacement += nbPointsJet[Ut.majToIndex(mot.charAt(i))] * 3;
                 numCol++;
             }
-            // Dans le cas où le sens est vertical et que la case est rose (mot compte
-            // double)
             // Dans le cas où le sens est vertical et que la case est rose (mot compte double)
             else if (sens == 'v' && this.g[numLig][numCol].getCouleur() == 4) {
                 for (int j = 0; j < mot.length(); j++) {
@@ -264,8 +247,6 @@ public class Plateau {
                 nbPointsPlacement *= 2;
                 coefCumul *= 2;
             }
-            // Dans le cas où le sens est vertical et que la case est rouge (mot compte
-            // triple)
             // Dans le cas où le sens est vertical et que la case est rouge (mot compte triple)
             else if (sens == 'v' && this.g[numLig][numCol].getCouleur() == 5) {
                 for (int j = 0; j < mot.length(); j++) {
@@ -277,6 +258,9 @@ public class Plateau {
             }
         }
         nbPointsPlacement *= coefCumul; // on multiplie le nombre de points aux "mot compte double" et "mot compte triple" rencontrés
+        if(mot.length() == 7){
+            nbPointsPlacement += 50;
+        }
         return nbPointsPlacement;
     }
     
