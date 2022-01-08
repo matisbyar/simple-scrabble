@@ -34,7 +34,14 @@ public class Plateau {
             affichage += Ut.indexToMaj(i);
             affichage += " || ";
             for (int j = 0; j < g.length; j++) {
-                affichage += g[i][j];
+                if(g[i][j].getCouleur() == 1 && !g[i][j].estRecouverte()){
+                    affichage += ' ';
+                } else if ((g[i][j].getCouleur() == 2 && !g[i][j].estRecouverte()) || (g[i][j].getCouleur() == 3 && !g[i][j].estRecouverte()) || (g[i][j].getCouleur() == 4 && !g[i][j].estRecouverte()) || (g[i][j].getCouleur() == 5 && !g[i][j].estRecouverte())){
+                    affichage += g[i][j].getCouleur();
+                } else if (g[i][j].estRecouverte()){
+                    affichage += g[i][j].getLettre();
+
+                }
                 affichage += " | ";
             }
             affichage += "\n";
