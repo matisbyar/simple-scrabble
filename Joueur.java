@@ -59,7 +59,7 @@ public class Joueur {
         else if (choix == 3 && !this.chevalet.estVide()){
             verificationPlacementMot = joueMot(p, s, nbPointsJet);        // Le joueur entre le mot qu'il veut jouer.
             while(!verificationPlacementMot){                             // Tant que ce mot est invalide (soit CapeloDico ou placement), il doit recommencer
-                verificationPlacementMot = joueMot(p, s, nbPointsJet);    
+                verificationPlacementMot = joueMot(p, s, nbPointsJet);
             }
         }
         return sortie;
@@ -91,6 +91,10 @@ public class Joueur {
         sens = Ut.saisirCaractere();
         Ut.afficher("CapeloDico procède à la vérification du mot. Le mot " + mot + " est-il valide (y/n)? ");
         valide = Ut.saisirCaractere();
+        while(valide != 'y' || valide != 'n'){
+            Ut.afficher(valide + " est invalide. " + "CapeloDico procède à la vérification du mot. Le mot " + mot + " est-il valide (y/n)? ");
+            valide = Ut.saisirCaractere();
+            }
         if(p.placementValide(mot, numLig, numCol, sens, this.chevalet) && valide == 'y'){        // si le mot et son placement sont valides 
             this.joueMotAux(p, s, nbPointsJet, mot, numLig, numCol, sens);                       // alors, on joue le mot avec les informations que le joueur a entré
             return true;
