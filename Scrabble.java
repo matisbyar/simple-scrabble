@@ -21,7 +21,7 @@ public class Scrabble {
         for (int i = 0; i < joueurs.length; i++) {
             scores += joueurs[i];
         }
-        return plateau.toString() + joueurs[numJoueur] + " Il possède la main.\nVoici les scores : " + scores;
+        return plateau.toString() + joueurs[numJoueur] + " Il possède la main.\nVoici les scores : " + scores + " ";
     }
 
     public void partie(){
@@ -30,12 +30,20 @@ public class Scrabble {
         // Premièrement, on distribue les jetons à chaque joueur
         for(int i = 0; i < joueurs.length; i++){
             joueurs[i].prendJetons(sac, 7);
+            Ut.afficher(sac.toString() + "\n");
         }
         // Ensuite, tant que le sac n'est pas vide ou qu'aucun des joueurs se retrouve avec 0 jeton, on lance ceci :
         while(!sac.estVide() || joueurs[numJoueur].nbPointsChevalet(nbPointsJeton) != 0 || !jeuArrete){
             Ut.clearConsole();
+            Ut.afficher(sac.toString() + "\n");
             Ut.afficher(toString());                                                                     // L'affichage du plateau
             sortieJoue += joueurs[numJoueur].joue(plateau, sac, nbPointsJeton);             // On fait jouer le joueur courant
+            if (sortieJoue >= 0){                                                            // Si le joueur ne passe pas son tour, sortieJoue revient à 0
+                sortieJoue = 0;
+            }
+            else if (sortieJoue <= (joueurs.length * -1)){                                          // Si tous les joueurs ont passé leur tour, le jeu s'arrête.
+                jeuArrete = true;
+            }
             if(sortieJoue == 1){                                                            // Si le chevalet du joueur est vide, on le remplit à nouveau
                 joueurs[numJoueur].prendJetons(sac, 7);
             }
@@ -43,12 +51,6 @@ public class Scrabble {
                 numJoueur = 0;
             } else {
                 numJoueur += 1;
-            }
-            if (sortieJoue != -1){                                                          // Si le joueur ne passe pas son tour, sortieJoue revient à 0
-                sortieJoue = 0;
-            }
-            if (sortieJoue == joueurs.length - 1){                                          // Si tous les joueurs ont passé leur tour, le jeu s'arrête.
-                jeuArrete = true;
             }
         }
         // Enfin, si le sac est vide et que l'un des joueurs se retrouve avec 0 jeton, on finit la partie avec ceci :

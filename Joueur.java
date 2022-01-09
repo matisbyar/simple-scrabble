@@ -10,7 +10,7 @@ public class Joueur {
 
     public String toString(){
         /* affiche les caractéristiques du joueur */
-        return "Le joueur " + nom + " possède un score de " + score + ".";
+        return "Le joueur " + nom + " possède un score de " + score + ". ";
     }
 
     public int getScore(){
@@ -122,7 +122,7 @@ public class Joueur {
             stratégie : appelle les méthodes estCorrectPourEchange et echangeJetonsAux */
         boolean motIncorrect = true;
         while (motIncorrect) {                                                                              // tant que le mot n'est pas validé
-            Ut.afficher("Veuillez saisir, en majuscule, les lettres que vous souhaitez afficher :\n");
+            Ut.afficher("Veuillez saisir, en majuscule, les lettres que vous souhaitez échanger :\n");
             String mot = Ut.saisirChaine();                                                                 // on demande au joueur de saisir un mot
             if (this.estCorrectPourEchange(mot)) {                                                          // si les lettres du mot sont en majuscule, et peuvent être échangés depuis le chevalet du joueur
                 this.echangeJetonsAux(sac, mot);                                                            // alors, on échange les lettres du mot contre des lettres aléatoires du sac
@@ -138,7 +138,7 @@ public class Joueur {
         MEE copie = new MEE(this.chevalet);                 // on effectue une copie du chevalet du joueur
         while (resultat && i < mot.length()) {              // tant que le résultat est vrai et que l'on a pas terminé de parcourir le mot
             if (Ut.estUneMajuscule(mot.charAt(i))) {        // on vérifie : si le mot contient que des majuscules
-                resultat = copie.retire(mot.charAt(i));     // on récupère la sortie et on la rentre dans resultat de la méthode retire, et on effectue un retrait de la lettre 
+                resultat = copie.retire(Ut.majToIndex(mot.charAt(i))-1);     // on récupère la sortie et on la rentre dans resultat de la méthode retire, et on effectue un retrait de la lettre 
                 i++;
             }
             else {

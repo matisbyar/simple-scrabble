@@ -65,7 +65,7 @@ public class MEE {
         }
         this.tabFreq[j]--;
         this.nbTotEx--;
-        return i;
+        return j;
     }
     
     public boolean transfere(MEE e, int i){
@@ -73,10 +73,8 @@ public class MEE {
            action/résultat : transfère un exemplaire de i de this vers e s’il en existe, et retourne vrai ssi cette action a pu être effectuée */
         boolean sortie = false;
         if (this.tabFreq[i] > 0) {
-            this.tabFreq[i]--;
-            this.nbTotEx--;
-            e.tabFreq[i]++;
-            e.nbTotEx++;
+            this.retire(i);
+            e.ajoute(i);
             sortie = true;
         }
         return sortie;
@@ -105,7 +103,6 @@ public class MEE {
         return somme;
     }
 
-    @Override
     public String toString(){
         String lettres = "";
         for(int i = 0; i < this.tabFreq.length; i++){

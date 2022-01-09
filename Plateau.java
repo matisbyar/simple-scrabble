@@ -95,7 +95,7 @@ public class Plateau {
         else {
             while (verification && bouclesortie) {
                 // La zone de placement du mot ne dépasse pas de la grille
-                if ((sens == 'h' && numCol + 1 + mot.length() >= g.length) || (sens == 'v' && numLig + 1 + mot.length() >= g.length)) {
+                if ((sens == 'h' && numCol + 1 + mot.length() > g.length) || (sens == 'v' && numLig + 1 + mot.length() > g.length)) {
                     verification = false;
                 }
                 // La zone de placement n'est pas précédée d'une case recouverte par un jeton
