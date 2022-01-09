@@ -105,11 +105,12 @@ public class MEE {
         return somme;
     }
 
+    @Override
     public String toString(){
         String lettres = "";
         for(int i = 0; i < this.tabFreq.length; i++){
             for(int j = 0; j < this.tabFreq[i]; j++){
-                lettres += Ut.indexToMaj(i) + " ";
+                lettres += Ut.indexToMaj(i+1) + " ";
             }
         }
         return lettres;

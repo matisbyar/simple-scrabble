@@ -230,14 +230,14 @@ public class Ut {
 	public static int majToIndex (char c) {
 		// Prerequis : c est un caractere entre 'a' et 'z'
 		// Resultat : la valeur 0 pour 'a', 12 pour 'm', 25 pour 'z'...
-			return (int)c - 65 - 32;
+			return (int)c - 64;
 		}
 	
 	public static char indexToMaj (int i) {
 	// Prerequis : i est un entier entre 0 et 25 
 	//             (par exemple, indice d'un tableau)
 	// Resultat : la valeur 'a' pour 0, 'm' pour 12, 'z' pour 25...b
-		return (char)(i + 65);
+		return (char)(i + 64);
 	}
 
 	public static boolean estUneMajuscule (char c){

@@ -4,7 +4,7 @@ public class MainScrabble {
         Ut.afficher("Combien de joueurs êtes-vous ? ");
         int nbJoueurs = Ut.saisirEntier();
         while((nbJoueurs < 1 && nbJoueurs > 14)){
-            Ut.afficher("Le nombre minimum de joueurs est de 1 et maximum, de 14. Combien êtes-vous ?");
+            Ut.afficher("Le nombre minimum de joueurs est de 1 et maximum, de 14. Combien êtes-vous ? ");
             nbJoueurs = Ut.saisirEntier();
         }
         String[] joueurs = new String[nbJoueurs];

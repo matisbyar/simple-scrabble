@@ -56,7 +56,7 @@ public class Joueur {
             sortie = 1;         // Le joueur échange ses jetons mais son chevalet est vide OU il place un mot mais son chevalet est vide
         }
         else if (choix == 2 && !this.chevalet.estVide()){
-            this.echangeJetons(s);  // Le joueur échange ses jetons ET son plateau n'est pas vide.
+            this.echangeJetons(s);  // Le joueur échange ses jetons ET son chevalet n'est pas vide.
         }
         else if (choix == 3 && !this.chevalet.estVide()){
             verificationPlacementMot = joueMot(p, s, nbPointsJet);        // Le joueur entre le mot qu'il veut jouer.
@@ -152,7 +152,7 @@ public class Joueur {
         /** pré-requis : sac peut contenir des entiers de 0 à 25 et ensJetons est un ensemble de jetons correct pour l’échange
             action : simule l’échange de jetons de ensJetons avec des jetons du sac tirés aléatoirement. */
         for (int i = 0; i < ensJetons.length(); i++) {                              // pour la longueur du mot
-            this.chevalet.transfere(sac, Ut.majToIndex(ensJetons.charAt(i)));       // on tranfère la lettre du mot d'indice i, depuis le chevalet du joueur vers le sac
+            this.chevalet.transfere(sac, Ut.majToIndex(ensJetons.charAt(i))-1);     // on tranfère la lettre du mot d'indice i, depuis le chevalet du joueur vers le sac
         }
         sac.transfereAleat(this.chevalet, ensJetons.length());                      // on récupère (nombre de lettres dans le mot) jetons aléatoires dans le sac et on les transfère dans le chevalet du joueur
     }

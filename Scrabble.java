@@ -14,10 +14,6 @@ public class Scrabble {
         joueurs = copieJoueur;
 
         numJoueur = Ut.randomMinMax(0, joueurs.length - 1);
-
-        // int[] freqSac = {9, 2, 2, 3, 15, 2, 2, 2, 8, 1, 1, 5, 3, 6, 6, 2, 1, 6, 6, 6, 6, 2, 1, 1, 1, 1};
-        // MEE copieSac = new MEE(freqSac);
-        // sac = copieSac;
     }
 
     public String toString() {
@@ -72,10 +68,6 @@ public class Scrabble {
             }
             String vainqueur = "";
             int scoreVainqueur = 0;
-            String scores = "";
-            for(int i = 0; i < joueurs.length; i++){                                        // Pour chaque joueur, on créé une ligne dans la variable scores, qui indique son nom et son score.
-                scores += "Le joueur " + joueurs[i] + " a pour score " + joueurs[i].getScore() + "\n";
-            }
             for(int i = 0; i < joueurs.length; i++){                                        // On cherche ensuite le vainqueur, c'est-à-dire celui qui a le plus de points
                 if(joueurs[i].getScore() > scoreVainqueur){
                     vainqueur = "le joueur " + joueurs[i];
