@@ -84,8 +84,8 @@ public class Plateau {
                 
                 // Le chevalet du joueur proposant le mot contient les lettres permettant de former le mot
                 MEE chevalet = new MEE(e);
-                for (int a = 0; a < mot.length()-1; a++) {
-                    verification = chevalet.retire(Ut.majToIndex(mot.charAt(a)));
+                for (int a = 0; a < mot.length(); a++) {
+                    verification = chevalet.retire(Ut.majToIndex(mot.charAt(a))-1);
                 }
                 // Toutes les vérifications sont valides, donc on sort du while
                 bouclesortie = false;
