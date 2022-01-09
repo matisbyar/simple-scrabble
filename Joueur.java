@@ -1,6 +1,6 @@
 public class Joueur {
     private String nom;     // le nom du joueur
-    private MEE chevalet;   // le chevalet du joueur
+    private MEE chevalet = new MEE(7);   // le chevalet du joueur
     private int score;      // le score du joueur
 
     public Joueur(String unNom){
@@ -44,7 +44,9 @@ public class Joueur {
         boolean verificationPlacementMot;
         int sortie = 0;
 
-        Ut.afficher("Que désirez-vous faire ?\n1. Je passe mon tour \n2.J'échange mes jetons \n3. Je place un mot\n Mon choix : ");
+        Ut.afficher("\n\n" + this.chevalet.toString());
+
+        Ut.afficher("Que désirez-vous faire ?\n1. Je passe mon tour \n2. J'échange mes jetons \n3. Je place un mot\n Mon choix : ");
         int choix = Ut.saisirEntier();
 
         if(choix == 1){
@@ -84,14 +86,14 @@ public class Joueur {
         Ut.afficher("Saisissez le mot que vous désirez entrer : ");
         mot = Ut.saisirChaine(); 
         Ut.afficher("Saisissez la ligne de placement (de A à Z): ");
-        numLig = Ut.indexToMaj(Ut.saisirEntier()) - 1;
+        numLig = Ut.majToIndex(Ut.saisirCaractere()) - 1;
         Ut.afficher("Saisissez la colone de placement (de 1 à 15) : ");
         numCol = Ut.saisirEntier() - 1;
         Ut.afficher("Saisissez le sens (h pour horizontal, v pour vertical) : ");
         sens = Ut.saisirCaractere();
         Ut.afficher("CapeloDico procède à la vérification du mot. Le mot " + mot + " est-il valide (y/n)? ");
         valide = Ut.saisirCaractere();
-        while(valide != 'y' || valide != 'n'){
+        while(valide != 'y' && valide != 'n'){
             Ut.afficher(valide + " est invalide. " + "CapeloDico procède à la vérification du mot. Le mot " + mot + " est-il valide (y/n)? ");
             valide = Ut.saisirCaractere();
             }

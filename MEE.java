@@ -104,4 +104,14 @@ public class MEE {
         }
         return somme;
     }
+
+    public String toString(){
+        String lettres = "";
+        for(int i = 0; i < this.tabFreq.length; i++){
+            for(int j = 0; j < this.tabFreq[i]; j++){
+                lettres += Ut.indexToMaj(i) + " ";
+            }
+        }
+        return lettres;
+    }
 }

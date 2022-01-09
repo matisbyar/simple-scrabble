@@ -1,5 +1,5 @@
 public class Plateau {
-    private Case[][] g; // g pour grille
+    private Case[][] g = new Case[15][15]; // g pour grille
 
     public Plateau() {
         int[][] plateau = { { 5, 1, 1, 2, 1, 1, 1, 5, 1, 1, 1, 2, 1, 1, 5 },

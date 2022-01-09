@@ -230,7 +230,7 @@ public class Ut {
 	public static int majToIndex (char c) {
 		// Prerequis : c est un caractere entre 'a' et 'z'
 		// Resultat : la valeur 0 pour 'a', 12 pour 'm', 25 pour 'z'...
-			return (int)c - 65;
+			return (int)c - 65 - 32;
 		}
 	
 	public static char indexToMaj (int i) {
